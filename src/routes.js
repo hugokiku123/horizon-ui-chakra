@@ -12,6 +12,7 @@ import {
 import MainDashboard from "views/admin/default";
 import Annoucement from "views/admin/annoucement";
 import Config from "views/admin/config";
+import Account from "views/admin/account";
 import NFTMarketplace from "views/admin/marketplace";
 import Profile from "views/admin/profile";
 import DataTables from "views/admin/dataTables";
@@ -32,6 +33,13 @@ const routes = [
     path: "/config",
     icon: <Icon as={MdHome} width='20px' height='20px' color='inherit' />,
     component: Config,
+  },
+  {
+    name: "Account",
+    layout: "/admin",
+    path: "/account",
+    icon: <Icon as={MdHome} width='20px' height='20px' color='inherit' />,
+    component: Account,
   },
   {
     name: "Main Dashboard",
