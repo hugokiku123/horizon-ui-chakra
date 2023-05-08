@@ -43,7 +43,7 @@ export default function Footer() {
             href='https://www.simmmple.com'
             target='_blank'
             fontWeight='700'>
-            Simmmple!
+            -
           </Link>
         </Text>
       </Text>
