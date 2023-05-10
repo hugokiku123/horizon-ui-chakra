@@ -26,16 +26,20 @@ import {
   SimpleGrid,
   useColorModeValue,
   Image,
-  useDisclosure,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  Badge
+  Td,
+  Tr,
+  Th,
+  Thead,
+  Text,
+  Flex,
+  Tbody,
+  Table,
+  Badge,
+  Input,
+  FormLabel,
+  useDisclosure
 } from "@chakra-ui/react";
+import Card from "components/card/Card"
 import React from "react";
 import { Button } from "@chakra-ui/react";
 import { AddIcon } from '@chakra-ui/icons'
@@ -43,53 +47,64 @@ import { SearchBar } from 'components/navbar/searchBar/SearchBar';
 
 export default function UserReports() {
   // Chakra Color Mode
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const brandColor = useColorModeValue("brand.500", "white");
   const boxBg = useColorModeValue("secondaryGray.300", "whiteAlpha.100");
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const property = {
-    imageUrl: "https://bit.ly/2Z4KKcF",
-    title: "Name",
-  }
+  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const borderColor = useColorModeValue("gray.200", "whiteAlpha.100");
+
+
   return (
     <Box pt={{ base: "130px", md: "80px", xl: "80px" }}>
+      <div style={{ textAlign: "right",marginBottom:"20px" }} >
+        <Button leftIcon={<AddIcon />} variant="brand" size="lg" onClick={onOpen}>
+          เพิ่มสมาชิก
+        </Button>
+      </div>
       <div style={{ marginBottom: "20px" }} >
         <SearchBar mb={{ base: '10px', md: 'unset' }} me="10px" borderRadius="30px" />
-
       </div>
-      <SimpleGrid columns={{ base: 3, sm: 3, md: 6 }} gap='20px'>
-        <Box maxW="sm" p="4" borderRadius="xl" overflow="hidden" boxShadow="lg" background="white">
-          <Image src={property.imageUrl} />
-          <Box p="3">
-            <Box
-              mt="1"
-              fontWeight="semibold"
-              as="h4"
-              lineHeight="tight"
-              isTruncated
-            >
-              {property.title}
-            </Box>
-            <Box>
-            <Badge colorScheme="green">Visible</Badge>
-            </Box>
-          </Box>
-        </Box>
-      </SimpleGrid>
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            modal body
-          </ModalBody>
-          <ModalFooter>
-            <Button colorScheme="brand" onClick={onClose}>
-              Submit
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+      <Card
+        direction='column'
+        w='100%'
+        px='0px'
+        overflowX={{ sm: "scroll", lg: "hidden" }}>
+        <Flex px='25px' justify='space-between' mb='20px' align='center'>
+          <Text
+            color={textColor}
+            fontSize='22px'
+            fontWeight='700'
+            lineHeight='100%'>
+            Sign in history
+        </Text>
+        </Flex>
+        <Table variant="simple">
+          <Thead>
+            <Tr>
+              <Th>Date</Th>
+              <Th>Username</Th>
+              <Th>Status</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            <Tr>
+              <Td>9/5/2566 - 02:51:17	</Td>
+              <Td>admin</Td>
+              <Td><Badge colorScheme="green">Success</Badge></Td>
+            </Tr>
+            <Tr>
+              <Td>9/5/2566 - 02:51:17	</Td>
+              <Td>admin</Td>
+              <Td><Badge colorScheme="red">Failed</Badge></Td>
+            </Tr>
+            <Tr>
+              <Td>9/5/2566 - 02:51:17	</Td>
+              <Td>admin</Td>
+              <Td><Badge colorScheme="red">Failed</Badge></Td>
+            </Tr>
+          </Tbody>
+        </Table>
+      </Card>
     </Box>
   );
 }
